@@ -36,6 +36,10 @@ export default {
           return require("@/assets/img/it.png");
         case "en":
           return require("@/assets/img/en.png");
+        case "es":
+          return require("@/assets/img/es.png");
+        case "ja":
+          return require("@/assets/img/ja.png");
         default:
           return "";
       }
