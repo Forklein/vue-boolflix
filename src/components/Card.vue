@@ -9,7 +9,7 @@
         :src="getFlag(cardMovie.original_language)"
         alt="flag"
       />
-      <p>{{ cardMovie.vote_average }}</p>
+      <p>{{ Math.ceil(cardMovie.vote_average) }}</p>
     </div>
     <div v-else class="card-series">
       <h3>{{ cardSeries.name }}</h3>
@@ -20,7 +20,7 @@
         :src="getFlag(cardSeries.original_language)"
         alt="flag"
       />
-      <p>{{ cardSeries.vote_average }}</p>
+      <p>{{ Math.ceil(cardSeries.vote_average) }}</p>
     </div>
   </div>
 </template>
