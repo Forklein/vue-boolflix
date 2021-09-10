@@ -15,15 +15,27 @@
     <main>
       <div class="container">
         <div class="row">
+          <h1 v-if="active && searchMovie.length > 0">
+            Movies {{ searchMovie.length }}
+          </h1>
+          <h1 v-else>Nessun risultato per Movies</h1>
+          <div v-for="movie in searchMovie" :key="movie.id" class="col-4 m-2">
+            <Card :cardMovie="movie" />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <h1 v-if="active && searchSeries.length > 0">
+            Series {{ searchSeries.length }}
+          </h1>
+          <h1 v-else>Nessun risultato per Series</h1>
           <div
-            v-for="movie in searchMovie"
-            :key="movie.id"
-            class="col-4 shadow m-2"
+            v-for="series in searchSeries"
+            :key="series.id"
+            class="col-4 m-2"
           >
-            <h2>{{ movie.title }}</h2>
-            <h5>{{ movie.original_title }}</h5>
-            <p>{{ movie.original_language }}</p>
-            <p>{{ movie.vote_average }}</p>
+            <Card :cardSeries="series" />
           </div>
         </div>
       </div>
@@ -33,12 +45,14 @@
 
 <script>
 import Search from "@/components/Search.vue";
+import Card from "@/components/Card.vue";
 import axios from "axios";
 
 export default {
   name: "Content",
   components: {
     Search,
+    Card,
   },
   data() {
     return {
@@ -46,11 +60,13 @@ export default {
       searchMovie: [],
       searchSeries: [],
       query: "",
+      active: false,
     };
   },
   methods: {
     getData(data) {
       this.query = data;
+      this.active = true;
       this.getMovie();
       this.getSeries();
     },
@@ -60,9 +76,7 @@ export default {
           `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&language=it_IT&query=${this.query}`
         )
         .then((res) => {
-          console.log(res.data.results, this.query);
           this.searchMovie = res.data.results;
-          this.$emit("searchMovie", this.searchMovie);
         })
         .catch((err) => {
           console.log(err);
@@ -74,9 +88,7 @@ export default {
           `https://api.themoviedb.org/3/search/tv?api_key=${this.apiKey}&language=it_IT&query=${this.query}`
         )
         .then((res) => {
-          console.log(res.data.results, this.query);
           this.searchSeries = res.data.results;
-          this.$emit("searchSeries", this.searchSeries);
         })
         .catch((err) => {
           console.log(err);

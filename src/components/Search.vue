@@ -1,6 +1,6 @@
 <template>
   <div class="search-bar text-center">
-    <input type="text" v-model.trim="query" />
+    <input @keyup.enter="sendInput" type="text" v-model.trim="query" />
     <button @click="sendInput" class="m-3">Search</button>
   </div>
 </template>
