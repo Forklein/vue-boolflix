@@ -10,6 +10,7 @@
         alt="flag"
       />
       <p>{{ Math.ceil(cardMovie.vote_average) }}</p>
+      <i class="fas fa-star"></i>
     </div>
     <div v-else class="card-series">
       <h3>{{ cardSeries.name }}</h3>
@@ -21,6 +22,7 @@
         alt="flag"
       />
       <p>{{ Math.ceil(cardSeries.vote_average) }}</p>
+      <i class="fas fa-star"></i>
     </div>
   </div>
 </template>
