@@ -15,7 +15,11 @@
       <h3>{{ cardSeries.name }}</h3>
       <h5>{{ cardSeries.original_name }}</h5>
       <p>{{ cardSeries.original_language }}</p>
-      <!-- <img :src="getFlag(cardMovie.original_language)" alt="flag" /> -->
+      <img
+        style="width: 50px"
+        :src="getFlag(cardSeries.original_language)"
+        alt="flag"
+      />
       <p>{{ cardSeries.vote_average }}</p>
     </div>
   </div>
