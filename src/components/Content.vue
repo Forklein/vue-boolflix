@@ -20,7 +20,7 @@
           </h1>
           <h1 v-else>Nessun risultato per Movies</h1>
           <div v-for="movie in searchMovie" :key="movie.id" class="col-4 m-2">
-            <Card :cardMovie="movie" />
+            <Card class="shadow" :cardMovie="movie" />
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
             :key="series.id"
             class="col-4 m-2"
           >
-            <Card :cardSeries="series" />
+            <Card class="shadow" :cardSeries="series" />
           </div>
         </div>
       </div>
