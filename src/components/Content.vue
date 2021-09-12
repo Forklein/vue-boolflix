@@ -15,9 +15,9 @@
     <main>
       <div class="container">
         <div class="row">
-          <h1 v-if="active && searchMovie.length > 0">
+          <h2 v-if="active && searchMovie.length > 0">
             Movies {{ searchMovie.length }} risultati
-          </h1>
+          </h2>
           <h1 v-else>Nessun risultato per Movies</h1>
           <div v-for="movie in searchMovie" :key="movie.id" class="col-4 m-2">
             <Card class="shadow" :cardMovie="movie" />
@@ -26,9 +26,9 @@
       </div>
       <div class="container">
         <div class="row">
-          <h1 v-if="active && searchSeries.length > 0">
+          <h2 v-if="active && searchSeries.length > 0">
             Series {{ searchSeries.length }} risultati
-          </h1>
+          </h2>
           <h1 v-else>Nessun risultato per Series</h1>
           <div
             v-for="series in searchSeries"
@@ -101,5 +101,9 @@ export default {
 <style scoped lang="scss">
 header {
   background-color: darkred;
+}
+
+h2 {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 </style>

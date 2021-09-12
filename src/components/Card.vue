@@ -1,6 +1,6 @@
 <template>
-  <div @mouseout="setOver" class="card overflow-auto">
-    <div v-if="cardMovie" class="card-movie">
+  <div @mouseout="setOver" class="card">
+    <div v-if="cardMovie" class="card-movie overflow-auto">
       <img
         v-if="!isOver"
         @mouseover="setOver"
@@ -31,7 +31,7 @@
         <p>{{ cardMovie.overview }}</p>
       </div>
     </div>
-    <div v-else class="card-series">
+    <div v-else class="card-series overflow-auto">
       <img
         v-if="!isOver"
         @mouseover="setOver"
