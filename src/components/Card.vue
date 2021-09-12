@@ -22,11 +22,14 @@
         />
         <p>{{ Math.ceil(cardMovie.vote_average / 2) }}</p>
         <i
-          v-for="(star, index) in getStars(
-            Math.ceil(cardMovie.vote_average / 2)
-          )"
+          v-for="(star, index) in 5"
           :key="index"
           class="fas fa-star"
+          :class="
+            getStars(index, Math.ceil(cardMovie.vote_average / 2))
+              ? 'starred'
+              : ''
+          "
         ></i>
         <p>{{ cardMovie.overview }}</p>
       </div>
@@ -53,11 +56,14 @@
         />
         <p>{{ Math.ceil(cardSeries.vote_average / 2) }}</p>
         <i
-          v-for="(star, index) in getStars(
-            Math.ceil(cardSeries.vote_average / 2)
-          )"
+          v-for="(star, index) in 5"
           :key="index"
           class="fas fa-star"
+          :class="
+            getStars(index, Math.ceil(cardSeries.vote_average / 2))
+              ? 'starred'
+              : ''
+          "
         ></i>
         <p>{{ cardSeries.overview }}</p>
       </div>
@@ -92,16 +98,21 @@ export default {
     getCover(path) {
       return `https://image.tmdb.org/t/p/w342${path}`;
     },
-    getStars(num) {
-      const arr = [];
-      let star = "star";
-      while (arr.length < num) {
-        arr.push(star);
+    getStars(index, num) {
+      // const arr = [];
+      // let star = "star";
+      // while (arr.length < num) {
+      //   arr.push(star);
+      // }
+      // return arr;
+      if (num > index) {
+        return true;
       }
-      return arr;
     },
     setOver() {
-      this.isOver = !this.isOver;
+      setTimeout(() => {
+        this.isOver = !this.isOver;
+      }, 300);
     },
   },
 };
@@ -112,9 +123,10 @@ export default {
   height: 531px;
   background-color: #000;
   color: #fff;
+  cursor: pointer;
 }
 
-i {
+.starred {
   color: rgb(185, 185, 72);
 }
 </style>
