@@ -16,7 +16,7 @@
       <div class="container">
         <div class="row">
           <h1 v-if="active && searchMovie.length > 0">
-            Movies {{ searchMovie.length }}
+            Movies {{ searchMovie.length }} risultati
           </h1>
           <h1 v-else>Nessun risultato per Movies</h1>
           <div v-for="movie in searchMovie" :key="movie.id" class="col-4 m-2">
@@ -27,7 +27,7 @@
       <div class="container">
         <div class="row">
           <h1 v-if="active && searchSeries.length > 0">
-            Series {{ searchSeries.length }}
+            Series {{ searchSeries.length }} risultati
           </h1>
           <h1 v-else>Nessun risultato per Series</h1>
           <div
