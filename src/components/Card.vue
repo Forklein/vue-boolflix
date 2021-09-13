@@ -111,7 +111,7 @@ export default {
 .card {
   //Custom bar
   ::-webkit-scrollbar {
-    width: 15px;
+    width: 10px;
   }
   ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;

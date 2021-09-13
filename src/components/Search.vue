@@ -6,7 +6,7 @@
       type="text"
       v-model.trim="query"
     />
-    <button @click="sendInput" class="m-3">Search</button>
+    <button @click="sendInput" class="m-2">Search</button>
   </div>
 </template>
 
