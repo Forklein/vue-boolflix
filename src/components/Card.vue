@@ -101,11 +101,6 @@ export default {
         return true;
       }
     },
-    setOver() {
-      setTimeout(() => {
-        this.isOver = !this.isOver;
-      }, 300);
-    },
   },
 };
 </script>
@@ -114,13 +109,30 @@ export default {
 @import "../assets/scss/_variables.scss";
 
 .card {
+  //Custom bar
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $header-color;
+    border-radius: 10px;
+  }
   height: 450px;
   background-color: $text-black;
   color: $text-white;
   cursor: pointer;
   .card-movie-info,
   .card-series-info {
-    display: none;
+    // display: none;
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    transition: opacity 2s, visibility 2s;
   }
   &:hover {
     .poster {
@@ -128,7 +140,11 @@ export default {
     }
     .card-movie-info,
     .card-series-info {
-      display: block;
+      // display: block;
+      visibility: visible;
+      overflow: auto;
+      height: 100%;
+      opacity: 1;
     }
   }
 }

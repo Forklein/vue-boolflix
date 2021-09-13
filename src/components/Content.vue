@@ -14,7 +14,7 @@
     </header>
     <main>
       <div class="container">
-        <div class="row">
+        <div class="row my-2">
           <h2 v-if="active && searchMovie.length > 0">
             Movies {{ searchMovie.length }} risultati
           </h2>
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="container">
-        <div class="row">
+        <div class="row my-2">
           <h2 v-if="active && searchSeries.length > 0">
             Series {{ searchSeries.length }} risultati
           </h2>
