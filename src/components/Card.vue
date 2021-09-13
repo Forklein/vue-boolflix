@@ -145,6 +145,7 @@ export default {
       overflow: auto;
       height: 100%;
       opacity: 1;
+      padding: 20px;
     }
   }
 }

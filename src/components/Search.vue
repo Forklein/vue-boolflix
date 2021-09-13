@@ -1,6 +1,11 @@
 <template>
   <div class="search-bar text-center">
-    <input @keyup.enter="sendInput" type="text" v-model.trim="query" />
+    <input
+      :placeholder="placeholder"
+      @keyup.enter="sendInput"
+      type="text"
+      v-model.trim="query"
+    />
     <button @click="sendInput" class="m-3">Search</button>
   </div>
 </template>
@@ -13,9 +18,11 @@ export default {
       query: "",
     };
   },
+  props: ["placeholder"],
   methods: {
     sendInput() {
       this.$emit("getData", this.query);
+      this.query = "";
     },
   },
 };

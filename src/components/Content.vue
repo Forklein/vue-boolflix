@@ -7,7 +7,7 @@
             <h1>Boolflix</h1>
           </div>
           <div class="col-6">
-            <Search @getData="getData" />
+            <Search @getData="getData" placeholder="Cerca un film..." />
           </div>
         </div>
       </section>
