@@ -7,7 +7,7 @@
             <h1>Boolflix</h1>
           </div>
           <div class="col-6 d-flex align-items-center">
-            <Genres @getGenre="getGenre" :genres="genres" />
+            <!-- <Genres @getGenre="getGenre" :genres="genres" /> -->
             <Search @getData="getData" placeholder="Cerca un film..." />
           </div>
         </div>
@@ -49,7 +49,7 @@
 <script>
 import Search from "@/components/Search.vue";
 import Card from "@/components/Card.vue";
-import Genres from "@/components/Select.vue";
+// import Genres from "@/components/Select.vue";
 
 import axios from "axios";
 
@@ -58,7 +58,7 @@ export default {
   components: {
     Search,
     Card,
-    Genres,
+    // Genres,
   },
   data() {
     return {
