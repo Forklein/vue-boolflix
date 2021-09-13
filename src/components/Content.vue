@@ -19,7 +19,7 @@
             Movies {{ searchMovie.length }} risultati
           </h2>
           <h1 v-else>Nessun risultato per Movies</h1>
-          <div v-for="movie in searchMovie" :key="movie.id" class="col-4 m-2">
+          <div v-for="movie in searchMovie" :key="movie.id" class="col-3 my-3">
             <Card class="shadow" :cardMovie="movie" />
           </div>
         </div>
@@ -33,7 +33,7 @@
           <div
             v-for="series in searchSeries"
             :key="series.id"
-            class="col-4 m-2"
+            class="col-3 my-3"
           >
             <Card class="shadow" :cardSeries="series" />
           </div>
@@ -65,10 +65,15 @@ export default {
   },
   methods: {
     getData(data) {
-      this.query = data;
-      this.active = true;
-      this.getMovie();
-      this.getSeries();
+      if (!data) {
+        this.searchMovie = this.searchSeries = [];
+        return;
+      } else {
+        this.query = data;
+        this.active = true;
+        this.getMovie();
+        this.getSeries();
+      }
     },
     getMovie() {
       axios
@@ -99,8 +104,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../assets/scss/_variables.scss";
 header {
-  background-color: darkred;
+  background-color: $header-color;
+  color: $text-black;
 }
 
 h2 {

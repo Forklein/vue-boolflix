@@ -1,17 +1,12 @@
 <template>
-  <div @mouseout="setOver" class="card">
+  <div class="card">
     <div v-if="cardMovie" class="card-movie overflow-auto">
       <img
-        v-if="!isOver"
-        @mouseover="setOver"
-        class="w-100 h-100"
+        class="w-100 h-100 poster"
         :src="getCover(cardMovie.poster_path)"
         alt="cover"
       />
-      <div
-        :class="isOver ? 'd-block' : 'd-none'"
-        class="card-movie-info text-center"
-      >
+      <div class="card-movie-info text-center">
         <h3>{{ cardMovie.title }}</h3>
         <h5>{{ cardMovie.original_title }}</h5>
         <p>{{ cardMovie.original_language }}</p>
@@ -36,16 +31,11 @@
     </div>
     <div v-else class="card-series overflow-auto">
       <img
-        v-if="!isOver"
-        @mouseover="setOver"
-        class="w-100 h-100"
+        class="w-100 h-100 poster"
         :src="getCover(cardSeries.poster_path)"
         alt="cover"
       />
-      <div
-        :class="isOver ? 'd-block' : 'd-none'"
-        class="card-series-info text-center"
-      >
+      <div class="card-series-info text-center">
         <h3>{{ cardSeries.name }}</h3>
         <h5>{{ cardSeries.original_name }}</h5>
         <p>{{ cardSeries.original_language }}</p>
@@ -75,9 +65,7 @@
 export default {
   name: "Card",
   data() {
-    return {
-      isOver: false,
-    };
+    return {};
   },
   props: ["cardMovie", "cardSeries"],
   methods: {
@@ -96,7 +84,11 @@ export default {
       }
     },
     getCover(path) {
-      return `https://image.tmdb.org/t/p/w342${path}`;
+      if (path) {
+        return `https://image.tmdb.org/t/p/w342${path}`;
+      } else {
+        return "https://www.altavod.com/assets/images/poster-placeholder.png";
+      }
     },
     getStars(index, num) {
       // const arr = [];
@@ -119,11 +111,26 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../assets/scss/_variables.scss";
+
 .card {
-  height: 531px;
-  background-color: #000;
-  color: #fff;
+  height: 450px;
+  background-color: $text-black;
+  color: $text-white;
   cursor: pointer;
+  .card-movie-info,
+  .card-series-info {
+    display: none;
+  }
+  &:hover {
+    .poster {
+      display: none;
+    }
+    .card-movie-info,
+    .card-series-info {
+      display: block;
+    }
+  }
 }
 
 .starred {
