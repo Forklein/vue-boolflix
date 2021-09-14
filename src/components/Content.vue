@@ -37,7 +37,7 @@
         </div>
         <div class="row my-2">
           <div
-            v-for="movie in searchMovie"
+            v-for="movie in filteredMovie"
             :key="movie.id"
             class="col-lg-3 col-md-4 col-6 my-3"
           >
@@ -65,7 +65,7 @@
         </div>
         <div class="row my-2">
           <div
-            v-for="series in searchSeries"
+            v-for="series in filteredSeries"
             :key="series.id"
             class="col-lg-3 col-md-4 col-6 my-3"
           >
@@ -107,6 +107,28 @@ export default {
   computed: {
     getFullGenres() {
       return [...this.genresMovie, ...this.genresSeries];
+    },
+    filteredMovie() {
+      if (this.genre == "All") {
+        return this.searchMovie;
+      } else {
+        return this.searchMovie.filter((el) => {
+          if (el.genre_ids.includes(this.genre)) {
+            return true;
+          }
+        });
+      }
+    },
+    filteredSeries() {
+      if (this.genre == "All") {
+        return this.searchSeries;
+      } else {
+        return this.searchSeries.filter((el) => {
+          if (el.genre_ids.includes(this.genre)) {
+            return true;
+          }
+        });
+      }
     },
   },
   methods: {

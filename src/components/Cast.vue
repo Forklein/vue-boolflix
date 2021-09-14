@@ -2,7 +2,7 @@
   <div class="cast">
     <h3>Cast</h3>
     <p class="m-0 fw-bold" v-for="(actor, index) in cast" :key="index">
-      {{ actor }}
+      {{ actor || castErr }}
     </p>
   </div>
 </template>

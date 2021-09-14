@@ -2,7 +2,11 @@
   <div class="select">
     <select v-model.trim="query" @change="sendInput">
       <option>All</option>
-      <option v-for="(genre, index) in genres" :key="genre.id + index">
+      <option
+        v-for="(genre, index) in genres"
+        :value="genre.id"
+        :key="genre.id + index"
+      >
         {{ genre.name }}
       </option>
     </select>
