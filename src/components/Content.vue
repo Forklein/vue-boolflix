@@ -32,7 +32,7 @@
             v-if="active && searchMovie.length > 0"
             class="col-6 d-flex align-items-center"
           >
-            <Genres @getGenre="getGenre" :genres="genresMovie" />
+            <Genres @getGenre="getGenMovie" :genres="genresMovie" />
           </div>
         </div>
         <div class="row my-2">
@@ -60,7 +60,7 @@
             v-if="active && searchSeries.length > 0"
             class="col-6 d-flex align-items-center"
           >
-            <Genres @getGenre="getGenre" :genres="genresSeries" />
+            <Genres @getGenre="getGenSeries" :genres="genresSeries" />
           </div>
         </div>
         <div class="row my-2">
@@ -99,7 +99,8 @@ export default {
       searchSeries: [],
       genresMovie: [],
       genresSeries: [],
-      genre: "All",
+      genMovie: "All",
+      genSeries: "All",
       query: "",
       active: false,
     };
@@ -109,22 +110,22 @@ export default {
       return [...this.genresMovie, ...this.genresSeries];
     },
     filteredMovie() {
-      if (this.genre == "All") {
+      if (this.genMovie == "All") {
         return this.searchMovie;
       } else {
         return this.searchMovie.filter((el) => {
-          if (el.genre_ids.includes(this.genre)) {
+          if (el.genre_ids.includes(this.genMovie)) {
             return true;
           }
         });
       }
     },
     filteredSeries() {
-      if (this.genre == "All") {
+      if (this.genSeries == "All") {
         return this.searchSeries;
       } else {
         return this.searchSeries.filter((el) => {
-          if (el.genre_ids.includes(this.genre)) {
+          if (el.genre_ids.includes(this.genSeries)) {
             return true;
           }
         });
@@ -143,8 +144,11 @@ export default {
         this.getSeries();
       }
     },
-    getGenre(data) {
-      this.genre = data;
+    getGenMovie(data) {
+      this.genMovie = data;
+    },
+    getGenSeries(data) {
+      this.genSeries = data;
     },
     getMovie() {
       axios

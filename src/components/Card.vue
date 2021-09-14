@@ -26,7 +26,7 @@
               : ''
           "
         ></i>
-        <Cast :id="cardMovie.id" />
+        <Cast :id="cardMovie.id" type="movie" />
         <div class="overview border border-2 mt-2 p-2">
           <h3>Overview</h3>
           <p>{{ cardMovie.overview }}</p>
@@ -50,7 +50,7 @@
         />
         <p>{{ Math.ceil(cardSeries.vote_average / 2) }}</p>
         <i
-          v-for="(star, index) in 5"
+          v-for="index in 5"
           :key="index"
           class="fas fa-star"
           :class="
@@ -59,7 +59,7 @@
               : ''
           "
         ></i>
-        <Cast :id="cardSeries.id" />
+        <Cast :id="cardSeries.id" type="tv" />
         <div class="overview border border-2 mt-2 p-2">
           <h3>Overview</h3>
           <p>{{ cardSeries.overview }}</p>
