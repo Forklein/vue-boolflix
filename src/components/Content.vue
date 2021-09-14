@@ -2,13 +2,17 @@
   <section>
     <header>
       <section class="container">
-        <div class="row align-items-center">
-          <div class="col-6">
+        <div class="row d-lg-flex d-sm-block align-items-center">
+          <div class="col-lg-6 col-12">
             <h1>Boolflix</h1>
           </div>
-          <div class="col-6 d-flex align-items-center">
+          <div class="col-lg-6 col-12 text-center">
             <!-- <Genres @getGenre="getGenre" :genres="genres" /> -->
-            <Search @getData="getData" placeholder="Cerca un film..." />
+            <Search
+              class="w-100"
+              @getData="getData"
+              placeholder="Cerca un film..."
+            />
           </div>
         </div>
       </section>
@@ -21,7 +25,11 @@
             Movies {{ searchMovie.length }} risultati
           </h2>
           <h1 v-else>Nessun risultato per Movies</h1>
-          <div v-for="movie in searchMovie" :key="movie.id" class="col-3 my-3">
+          <div
+            v-for="movie in searchMovie"
+            :key="movie.id"
+            class="col-lg-3 col-md-4 col-6 my-3"
+          >
             <Card class="shadow" :cardMovie="movie" />
           </div>
         </div>
@@ -36,7 +44,7 @@
           <div
             v-for="series in searchSeries"
             :key="series.id"
-            class="col-3 my-3"
+            class="col-lg-3 col-md-4 col-6 my-3"
           >
             <Card class="shadow" :cardSeries="series" />
           </div>
@@ -84,6 +92,12 @@ export default {
         this.getSeries();
       }
     },
+    getGenre(data) {
+      this.genre = data;
+    },
+    // getCast(id){
+
+    // },
     getMovie() {
       axios
         .get(
@@ -108,20 +122,17 @@ export default {
           console.log(err);
         });
     },
-    getGenre(data) {
-      this.genre = data;
-    },
   },
-  created() {
-    axios
-      .get(`${this.baseUri}/genre/movie/list?api_key=${this.apiKey}`)
-      .then((res) => {
-        this.genres = res.data.genres;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
+  // created() {
+  //   axios
+  //     .get(`${this.baseUri}/genre/movie/list?api_key=${this.apiKey}`)
+  //     .then((res) => {
+  //       this.genres = res.data.genres;
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // },
 };
 </script>
 

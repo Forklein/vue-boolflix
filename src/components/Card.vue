@@ -26,7 +26,9 @@
               : ''
           "
         ></i>
-        <p>{{ cardMovie.overview }}</p>
+        <Cast :id="cardMovie.id" />
+        <h3>Overview</h3>
+        <p class="m-2">{{ cardMovie.overview }}</p>
       </div>
     </div>
     <div v-else class="card-series overflow-auto">
@@ -55,6 +57,7 @@
               : ''
           "
         ></i>
+        <Cast :id="cardSeries.id" />
         <p>{{ cardSeries.overview }}</p>
       </div>
     </div>
@@ -62,12 +65,15 @@
 </template>
 
 <script>
+import Cast from "@/components/Cast.vue";
+
 export default {
   name: "Card",
-  data() {
-    return {};
+  components: {
+    Cast,
   },
   props: ["cardMovie", "cardSeries"],
+  computed: {},
   methods: {
     getFlag(language) {
       switch (language.toLowerCase()) {
@@ -91,12 +97,6 @@ export default {
       }
     },
     getStars(index, num) {
-      // const arr = [];
-      // let star = "star";
-      // while (arr.length < num) {
-      //   arr.push(star);
-      // }
-      // return arr;
       if (num > index) {
         return true;
       }
