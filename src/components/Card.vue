@@ -27,8 +27,10 @@
           "
         ></i>
         <Cast :id="cardMovie.id" />
-        <h3>Overview</h3>
-        <p class="m-2">{{ cardMovie.overview }}</p>
+        <div class="overview border border-2 mt-2 p-2">
+          <h3>Overview</h3>
+          <p>{{ cardMovie.overview }}</p>
+        </div>
       </div>
     </div>
     <div v-else class="card-series overflow-auto">
@@ -58,7 +60,10 @@
           "
         ></i>
         <Cast :id="cardSeries.id" />
-        <p>{{ cardSeries.overview }}</p>
+        <div class="overview border border-2 mt-2 p-2">
+          <h3>Overview</h3>
+          <p>{{ cardSeries.overview }}</p>
+        </div>
       </div>
     </div>
   </div>
