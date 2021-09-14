@@ -7,7 +7,6 @@
             <h1>Boolflix</h1>
           </div>
           <div class="col-lg-6 col-12 text-center">
-            <!-- <Genres @getGenre="getGenre" :genres="genres" /> -->
             <Search
               class="w-100"
               @getData="getData"
@@ -21,10 +20,22 @@
       <!-- Movie section -->
       <div class="container">
         <div class="row my-2">
-          <h2 v-if="active && searchMovie.length > 0">
-            Movies {{ searchMovie.length }} risultati
-          </h2>
-          <h1 v-else>Nessun risultato per Movies</h1>
+          <div class="col-6">
+            <h2 v-if="active && searchMovie.length > 0">
+              Movies {{ searchMovie.length }} risultati
+            </h2>
+            <h1 v-else-if="active && !searchMovie.length">
+              Nessun risultato per Movies
+            </h1>
+          </div>
+          <div
+            v-if="active && searchMovie.length > 0"
+            class="col-6 d-flex align-items-center"
+          >
+            <Genres @getGenre="getGenre" :genres="genresMovie" />
+          </div>
+        </div>
+        <div class="row my-2">
           <div
             v-for="movie in searchMovie"
             :key="movie.id"
@@ -37,10 +48,22 @@
       <!-- Series section -->
       <div class="container">
         <div class="row my-2">
-          <h2 v-if="active && searchSeries.length > 0">
-            Series {{ searchSeries.length }} risultati
-          </h2>
-          <h1 v-else>Nessun risultato per Series</h1>
+          <div class="col-6">
+            <h2 v-if="active && searchSeries.length > 0">
+              Series {{ searchSeries.length }} risultati
+            </h2>
+            <h1 v-else-if="active && !searchSeries.length">
+              Nessun risultato per Series
+            </h1>
+          </div>
+          <div
+            v-if="active && searchSeries.length > 0"
+            class="col-6 d-flex align-items-center"
+          >
+            <Genres @getGenre="getGenre" :genres="genresSeries" />
+          </div>
+        </div>
+        <div class="row my-2">
           <div
             v-for="series in searchSeries"
             :key="series.id"
@@ -57,7 +80,7 @@
 <script>
 import Search from "@/components/Search.vue";
 import Card from "@/components/Card.vue";
-// import Genres from "@/components/Select.vue";
+import Genres from "@/components/Genres.vue";
 
 import axios from "axios";
 
@@ -66,7 +89,7 @@ export default {
   components: {
     Search,
     Card,
-    // Genres,
+    Genres,
   },
   data() {
     return {
@@ -74,11 +97,17 @@ export default {
       baseUri: "https://api.themoviedb.org/3/",
       searchMovie: [],
       searchSeries: [],
-      genres: [],
+      genresMovie: [],
+      genresSeries: [],
       genre: "All",
       query: "",
       active: false,
     };
+  },
+  computed: {
+    getFullGenres() {
+      return [...this.genresMovie, ...this.genresSeries];
+    },
   },
   methods: {
     getData(data) {
@@ -95,9 +124,6 @@ export default {
     getGenre(data) {
       this.genre = data;
     },
-    // getCast(id){
-
-    // },
     getMovie() {
       axios
         .get(
@@ -123,16 +149,24 @@ export default {
         });
     },
   },
-  // created() {
-  //   axios
-  //     .get(`${this.baseUri}/genre/movie/list?api_key=${this.apiKey}`)
-  //     .then((res) => {
-  //       this.genres = res.data.genres;
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // },
+  created() {
+    axios
+      .get(`${this.baseUri}/genre/movie/list?api_key=${this.apiKey}`)
+      .then((res) => {
+        this.genresMovie = res.data.genres;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get(`${this.baseUri}/genre/tv/list?api_key=${this.apiKey}`)
+      .then((res) => {
+        this.genresSeries = res.data.genres;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 };
 </script>
 

@@ -1,8 +1,8 @@
 <template>
-  <div class="select m-2">
+  <div class="select">
     <select v-model.trim="query" @change="sendInput">
       <option>All</option>
-      <option v-for="genre in genres" :key="genre.id">
+      <option v-for="(genre, index) in genres" :key="genre.id + index">
         {{ genre.name }}
       </option>
     </select>
